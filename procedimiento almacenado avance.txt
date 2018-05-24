@@ -1,0 +1,45 @@
+  /*******************************************
+  PROCEDIMIENTOS ALMACENADOS*/
+
+  create  procedure spCLient
+  (
+  @cod_cli varchar(6),
+  @nom_cli varchar(30),
+  @ape_cli varchar(30),
+  @sexo_cli varchar(1),
+  @dni_cli varchar(8),
+  @tel_cli varchar(9),
+  @ruc_cli varchar(11),
+  @email_cli varchar(30),
+  @dir_cli varchar(30) 
+  )
+  as
+  insert into client(cod_cli,nom_cli,ape_cli,sexo_cli,dni_cli,tel_cli,ruc_cli,email_cli,dir_cli) values (@cod_cli,@nom_cli,@ape_cli,@sexo_cli,@dni_cli,@tel_cli,@ruc_cli,@email_cli,@dir_cli);
+
+  EXEC spCLient'CC0010','diego','maradona','M','75155655','87558544','00000000','diego.es@gmail.com','argentina'
+GO
+/**************************************************************/
+create proc consulclient
+as 
+select * from client 
+where cod_cli = 'CC0001'
+
+exec consulclient
+/*****************************************************************/
+create procedure actualizaProdu1
+  @cod_cli varchar(6),
+ @nom_cli varchar(30),
+  @ape_cli varchar(30),
+  @sexo_cli varchar(1),
+  @dni_cli varchar(8),
+  @tel_cli varchar(9),
+  @ruc_cli varchar(11),
+  @email_cli varchar(30),
+  @dir_cli varchar(30) 
+as 
+begin
+update client set nom_cli=@nom_cli,ape_cli=@ape_cli,sexo_cli=@sexo_cli,dni_cli=@dni_cli,tel_cli=@tel_cli,ruc_cli=@ruc_cli,email_cli=@email_cli,dir_cli=@dir_cli
+where cod_cli=@cod_cli
+end
+go
+exec actualizaProdu1'CC0010','diego','maradona','M','75155655','87558544','00000000','diego.es@gmail.com','peru'
